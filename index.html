@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Passion+One:wght@400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <title>TODO APP</title>
+</head>
+<body>
+
+    <h1>TODO APP</h1>
+
+    <div class="button-todo">
+        <button>Create New Todo List</button>
+    </div>
+
+    <div class="form hidden">
+        <h1>Add Todo List</h1>
+        <form action="">
+            <div class="nama garis">
+                <p>Nama</p>
+                <input type="text">
+            </div>
+
+            <div class="jabatan garis">
+                <p>Jabatan</p>
+                <input type="text">
+            </div>
+            
+            <div class="text garis">
+                <p>Text</p>
+                <input type="tel">
+            </div>
+
+            <div class="level garis">
+            <p>Level</p>
+                <ul class="todo-level">
+                    <li>Low</li>
+                    <li>Medium</li>
+                    <li>High</li>
+                </ul>
+            </div>
+
+            <button>Submit</button>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
+
+    <div class="box-card">
+
+        <div class="container-card">
+
+            <div class="todo-card">
+
+                <div class="todo-level-tanggal">
+                    <div class="level">
+                        <h4>Important</h4>
+                    </div>
+                    
+                    <div class="tanggal">
+                        <p>12 Desember 2024</p>
+                    </div>
+                </div>
+
+                <div class="todo-text">
+                    <p>saya akan melakukan push up saya akan melakukan push up saya akan melakukan push up</p>
+                </div>
+
+                <div class="todo-nama-done-delete">
+
+                    <div class="nama">
+                        <h4>Abel Armando</h4>
+                        <p>Manager</p>
+                    </div>
+
+                    <div class="trash-check">
+                        <i class="fa-solid fa-check"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </div>                  
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
