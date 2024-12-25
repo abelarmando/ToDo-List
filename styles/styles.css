@@ -120,7 +120,7 @@ form{
     justify-content: center;
     align-items: center;
     gap: 15px;
-    width: 40%;
+    width: 20%;
     border-radius: 15px;
 }
 
@@ -140,9 +140,13 @@ form button{
 form input{
     border: none;
     border-radius: 10px;
-    width: 60%;
+    width: 70%;
     outline: none;
     padding: 5px;
+}
+
+form textarea{
+    width: 1000px;
 }
 
 form .garis{
@@ -153,8 +157,30 @@ form .garis{
     /* border: solid; */
 }
 
+.garis p{
+    width: 20%;
+}
+
+#todo-text{
+    width: 70%;
+    border-radius: 10px;
+    resize: vertical;
+    padding: 5px;
+    outline: none;
+}
+
 .todo-level{
-    width: 57%;
+    width: 72.5%;
+    height: 100%;
+}
+
+
+
+#todo-level-dropdown{
+    border-radius: 10px;
+    height: 100%;
+    outline: none;
+    padding: 5px;
 }
 
 
