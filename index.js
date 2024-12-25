@@ -17,10 +17,13 @@ const closehidden = function() {
 
 buttontodo.addEventListener('click', openhidden);
 
+overlay.addEventListener('click', closehidden)
 document.addEventListener('keydown', function(e) {
     if(e.key === 'Escape' && !form.classList.contains('hidden')) {
         closehidden();
     }
     console.log(e.key);
 });
+
+
 
