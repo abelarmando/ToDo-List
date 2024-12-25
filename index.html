@@ -24,21 +24,21 @@
 
     <div class="form hidden">
         <h1>Add Todo List</h1>
+        <button class="close">&times</button>
         <form action="">
-            <button class="close">&times</button>
             <div class="nama garis">
                 <p>Nama</p>
-                <input type="text" id="nama">
+                <input type="text" id="nama" required>
             </div>
 
             <div class="jabatan garis">
                 <p>Jabatan</p>
-                <input type="text" id="jabatan">
+                <input type="text" id="jabatan" required>
             </div>
             
             <div class="text garis">
                 <p>Text</p>
-                <textarea name="todo-text" id="todo-text"></textarea>
+                <textarea name="todo-text" id="todo-text" required></textarea>
             </div>
 
             <div class="level garis">
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <input type="button" value="Submit" id="btn-form">
+            <button id="btn-form">Submit</button>
         </form>
     </div>
     <div class="overlay hidden"></div>
