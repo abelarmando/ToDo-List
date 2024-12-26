@@ -91,27 +91,15 @@ function updatetabel(){
     boxcard.innerHTML = '';
     todo.forEach((item, index) => {
         const todoitem = createtodoitem(item, index);
-        savetable();
+        savetodolist();
         boxcard.append(todoitem);
     })
     
-    const btndelete = document.querySelectorAll('.delete-todo');
- 
-
-    for(let i = 0; i < btndelete.length; i++){
-        btndelete[i].addEventListener('click', function(e) {        
-            
-            itemindex = todo.findIndex((item) => item.id == e.target.attributes.id.value);
-            console.log(itemindex);
-            todo.splice(itemindex,1);
-            savetable();
-            updatetabel();
-        })     
-    }
     
    
 
 };
+
 
 // function untuk membuat table
 function createtodoitem(item, index) {
@@ -152,12 +140,41 @@ function createtodoitem(item, index) {
         </div>
     </div>
     `
+    const btndelete = todotable.querySelector('.delete-todo');
+
+    btndelete.addEventListener('click', function() {        
+            
+        // itemindex = todo.findIndex((item) => item.id == e.target.attributes.id.value);
+        // console.log(itemindex);
+        // todo.splice(itemindex,1);
+        // savetodolist();
+        // updatetabel();
+
+        deletetodolist(index);
+         
+    });
+
+    const btncheck = todotable.querySelector('fa-check');
+
+    btncheck.addEventListener('click', function() {
+        
+    })
+
+    
 
     return todotable;
 
 };
 
-function savetable () {
+function deletetodolist(todoindex) {
+    // console.log(todoindex);
+    todo = todo.filter((n, b) => b !== todoindex);
+    savetodolist();
+    updatetabel();
+};
+
+
+function savetodolist () {
     const todojson = JSON.stringify(todo)
     localStorage.setItem('todos', todojson);
 }
@@ -165,9 +182,5 @@ function savetable () {
 function opensavetodo() {
     const todos = localStorage.getItem('todos') || '[]';
     return JSON.parse(todos);
-}
-
-function deleteitem(){
-    alert('haha')
 }
 
