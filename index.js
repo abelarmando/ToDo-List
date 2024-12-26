@@ -12,6 +12,7 @@ const textinput = document.getElementById('todo-text');
 const levelinput = document.getElementById('todo-level-dropdown');
 const boxcard = document.querySelector('.box-card');
 
+
 // function untuk menampilkan / menghilangkan overlay dan form todo
 const openhidden = function() {
     form.classList.remove('hidden');
@@ -53,9 +54,11 @@ const f = new Intl.DateTimeFormat('en-gb', {
 
 // function untuk memasukan obj ke array
 
-let todo = [];
+let todo = opensavetodo();
+updatetabel();
 
-let number = 1;
+let number = 0;
+
 
 function addtodo(){
     const todoobj = {
@@ -75,25 +78,48 @@ function addtodo(){
     namainput.value = '';
     jabataninput.value = '';
     textinput.value = '';
-    levelinput.value = 'low';
 
     number += 1;
 };
 
+let itemindex;
+// console.log(itemindex);
+
 // untuk update table
 function updatetabel(){
+    // untuk mereset innerhtml
+    boxcard.innerHTML = '';
     todo.forEach((item, index) => {
         const todoitem = createtodoitem(item, index);
+        savetable();
         boxcard.append(todoitem);
     })
+    
+    const btndelete = document.querySelectorAll('.delete-todo');
+ 
+
+    for(let i = 0; i < btndelete.length; i++){
+        btndelete[i].addEventListener('click', function(e) {        
+            
+            itemindex = todo.findIndex((item) => item.id == e.target.attributes.id.value);
+            console.log(itemindex);
+            todo.splice(itemindex,1);
+            savetable();
+            updatetabel();
+        })     
+    }
+    
+   
+
 };
 
 // function untuk membuat table
 function createtodoitem(item, index) {
     const todotable = document.createElement('div');
-    todotable.className = 'container-card';
+    todotable.className = 'flex';
     todotable.innerHTML = `
-    <div class="todo-card" id = '${index}'>
+    <div class="container-card">
+        <div class="todo-card" id = '${index}'>
 
                 <div class="todo-level-tanggal">
                     <div class="level">
@@ -118,15 +144,30 @@ function createtodoitem(item, index) {
 
                 <div class="trash-check">
                     <i class="fa-solid fa-check"></i>
-                     <i class="fa-solid fa-trash"></i>
+                     <i class="fa-solid fa-trash delete-todo" id='${index}'></i>
                 </div>                  
                     
             </div>
 
         </div>
+    </div>
     `
-    return todotable
+
+    return todotable;
 
 };
 
+function savetable () {
+    const todojson = JSON.stringify(todo)
+    localStorage.setItem('todos', todojson);
+}
+
+function opensavetodo() {
+    const todos = localStorage.getItem('todos') || '[]';
+    return JSON.parse(todos);
+}
+
+function deleteitem(){
+    alert('haha')
+}
 

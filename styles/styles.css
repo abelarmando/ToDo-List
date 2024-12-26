@@ -54,13 +54,17 @@ h4{
 .box-card{
     width: 100%;
     display: grid;
-    gap: 10px;
-    border: solid white;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.flex{
+display: flex;
+justify-content: center;
 }
 
 .container-card{
-    width: 100%;
+    width: 40%;
     height: 100%;
 }
 
