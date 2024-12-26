@@ -10,6 +10,7 @@ const namainput = document.getElementById('nama');
 const jabataninput = document.getElementById('jabatan');
 const textinput = document.getElementById('todo-text');
 const levelinput = document.getElementById('todo-level-dropdown');
+const boxcard = document.querySelector('.box-card');
 
 // function untuk menampilkan / menghilangkan overlay dan form todo
 const openhidden = function() {
@@ -21,38 +22,6 @@ const closehidden = function() {
     form.classList.add('hidden');
     overlay.classList.add('hidden');
 };
-
-// tanggal sekarang
-const today = new Date();
-const f = new Intl.DateTimeFormat('en-gb', {
-    dateStyle: 'long',
-})
-
-// function untuk memasukan obj ke array
-
-let number = 0;
-
-let todo = [];
-
-const addtodo = function(){
-    const todoobj = {
-        id: number,
-        nama: namainput.value.trim(),
-        jabatan: jabataninput.value.trim(),
-        text: textinput.value.trim(),
-        level: levelinput.value,
-        tanggal: f.format(today),
-        aktif: 0,
-    };
-     
-    todo.push(todoobj);
-    console.log(todo);
-    number += 1;
-};
-
-// function untuk membuat table
-// const createtodoitem = function()
-
 
 
 // membuat tombol interaktif menampilkan dan menutup form
@@ -76,5 +45,88 @@ formtodo.addEventListener('submit', function(e) {
     closehidden()
 });
 
+// tanggal sekarang
+const today = new Date();
+const f = new Intl.DateTimeFormat('en-gb', {
+    dateStyle: 'long',
+});
+
+// function untuk memasukan obj ke array
+
+let todo = [];
+
+let number = 1;
+
+function addtodo(){
+    const todoobj = {
+        id: number,
+        nama: namainput.value.trim(),
+        jabatan: jabataninput.value.trim(),
+        text: textinput.value.trim(),
+        level: levelinput.value,
+        tanggal: f.format(today),
+        aktif: 0,
+    };
+     
+    todo.push(todoobj);
+
+    updatetabel();
+
+    namainput.value = '';
+    jabataninput.value = '';
+    textinput.value = '';
+    levelinput.value = 'low';
+
+    number += 1;
+};
+
+// untuk update table
+function updatetabel(){
+    todo.forEach((item, index) => {
+        const todoitem = createtodoitem(item, index);
+        boxcard.append(todoitem);
+    })
+};
+
+// function untuk membuat table
+function createtodoitem(item, index) {
+    const todotable = document.createElement('div');
+    todotable.className = 'container-card';
+    todotable.innerHTML = `
+    <div class="todo-card" id = '${index}'>
+
+                <div class="todo-level-tanggal">
+                    <div class="level">
+                        <h4>${item.level}</h4>
+                    </div>
+                    
+                    <div class="tanggal">
+                        <p>${item.tanggal}</p>
+                    </div>
+                </div>
+
+                <div class="todo-text">
+                    <p>${item.text}</p>
+                </div>
+
+                <div class="todo-nama-done-delete">
+
+                <div class="nama">
+                    <h4>${item.nama}</h4>
+                    <p>${item.jabatan}</p>
+                </div>
+
+                <div class="trash-check">
+                    <i class="fa-solid fa-check"></i>
+                     <i class="fa-solid fa-trash"></i>
+                </div>                  
+                    
+            </div>
+
+        </div>
+    `
+    return todotable
+
+};
 
 
