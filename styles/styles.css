@@ -21,6 +21,7 @@ body{
     align-items: center;
     flex-direction: column;
     gap: 15px;
+    padding: 0px 64px;
     background-color: var(--background);
 }
 
@@ -54,8 +55,9 @@ h4{
 .box-card{
     width: 100%;
     display: grid;
-    gap: 10px;
+    gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
 }
 
 .flex{
@@ -66,7 +68,7 @@ width: 100%;
 }
 
 .container-card{
-    width: 80%;
+    width: 90%;
     height: 100%;
 }
 
@@ -251,6 +253,9 @@ form .garis{
  }
 
  @media (max-width: 600px) {
+    body{
+        padding: 0px;
+    }
     .button-todo{
         width: fit-content;
     }

@@ -92,6 +92,7 @@ function addtodo(){
     jabataninput.value = '';
     textinput.value = '';
     number += 1;
+    tenggatwaktu.value = ''
 };
 
 let itemindex;
