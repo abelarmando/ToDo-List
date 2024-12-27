@@ -11,6 +11,8 @@ const jabataninput = document.getElementById('jabatan');
 const textinput = document.getElementById('todo-text');
 const levelinput = document.getElementById('todo-level-dropdown');
 const boxcard = document.querySelector('.box-card');
+const todocomplete = document.querySelector('.todo-complete');
+
 
 
 // function untuk menampilkan / menghilangkan overlay dan form todo
@@ -68,17 +70,18 @@ function addtodo(){
         text: textinput.value.trim(),
         level: levelinput.value,
         tanggal: f.format(today),
-        aktif: 0,
+        aktif: false,
     };
-     
+
     todo.push(todoobj);
 
+    
+    savetodolist();
     updatetabel();
 
     namainput.value = '';
     jabataninput.value = '';
     textinput.value = '';
-
     number += 1;
 };
 
@@ -89,15 +92,20 @@ let itemindex;
 function updatetabel(){
     // untuk mereset innerhtml
     boxcard.innerHTML = '';
+    todocomplete.innerHTML= '';
     todo.forEach((item, index) => {
-        const todoitem = createtodoitem(item, index);
-        savetodolist();
-        boxcard.append(todoitem);
+            const todoitem = createtodoitem(item, index);
+            savetodolist();
+            if (item.aktif === false) {
+                boxcard.append(todoitem);
+            } else {
+                todocomplete.append(todoitem)
+            }
+            
     })
-    
-    
-   
-
+    const flexcard = document.querySelectorAll('.flex');
+    // console.log(flexcard[]);
+  
 };
 
 
@@ -140,38 +148,60 @@ function createtodoitem(item, index) {
         </div>
     </div>
     `
+    
     const btndelete = todotable.querySelector('.delete-todo');
 
     btndelete.addEventListener('click', function() {        
-            
-        // itemindex = todo.findIndex((item) => item.id == e.target.attributes.id.value);
-        // console.log(itemindex);
-        // todo.splice(itemindex,1);
-        // savetodolist();
-        // updatetabel();
 
         deletetodolist(index);
          
     });
 
-    const btncheck = todotable.querySelector('fa-check');
+    const btncheck = todotable.querySelector('.fa-check');
 
     btncheck.addEventListener('click', function() {
-        
+        completedtodolist(item, index);
     })
 
-    
 
     return todotable;
 
 };
 
+// untuk delete todolist array
 function deletetodolist(todoindex) {
-    // console.log(todoindex);
     todo = todo.filter((n, b) => b !== todoindex);
     savetodolist();
     updatetabel();
 };
+
+function completedtodolist(item, todoindex) {
+    // untuk mengubah value objek aktif dari yg 0 menjadi 1 
+    item.aktif = true;
+    // untuk mencari array yg sudah selesai
+    const changetodo = todo.filter((n, b) => b == todoindex);
+    const converteobj = {
+        id: item.id,
+        nama: item.nama,
+        jabatan: item.jabatan,
+        text: item.text,
+        level: item.level,
+        tanggal: item.tanggal,
+        aktif: item.aktif,
+    }
+    // console.log(changeobj);
+
+    
+
+    // untuk menghapus array objek yg sudah selesai
+    todo = todo.filter((n, b) => b !== todoindex);
+    
+    todo.push(converteobj);
+    console.log(todo);
+
+    savetodolist();
+    updatetabel();
+}
 
 
 function savetodolist () {
