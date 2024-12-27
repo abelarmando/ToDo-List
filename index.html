@@ -24,74 +24,57 @@
 
     <div class="form hidden">
         <h1>Add Todo List</h1>
-        <form action="">
+        <button class="close">&times</button>
+        <form nama='form-todo' action="">
             <div class="nama garis">
                 <p>Nama</p>
-                <input type="text">
+                <input type="text" id="nama" required>
             </div>
 
             <div class="jabatan garis">
                 <p>Jabatan</p>
-                <input type="text">
+                <input type="text" id="jabatan" required>
             </div>
             
             <div class="text garis">
                 <p>Text</p>
-                <input type="tel">
+                <textarea name="todo-text" id="todo-text" required></textarea>
+            </div>
+
+            <div class="tanggal garis">
+                <p>Tenggat Waktu</p>
+                <input type="date" class="tenggat-waktu" required>
             </div>
 
             <div class="level garis">
             <p>Level</p>
-                <ul class="todo-level">
-                    <li>Low</li>
-                    <li>Medium</li>
-                    <li>High</li>
-                </ul>
+                <div class="todo-level">
+                    <select name="level" id="todo-level-dropdown">
+                        <option value="Low" selected>Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
             </div>
 
-            <button>Submit</button>
+            <button id="btn-form">Submit</button>
         </form>
     </div>
     <div class="overlay hidden"></div>
 
     <div class="box-card">
+        
+    </div>
 
-        <div class="container-card">
+    <h1>Overdue</h1>
+    <div class="todo-overdue">
 
-            <div class="todo-card">
+    </div>
 
-                <div class="todo-level-tanggal">
-                    <div class="level">
-                        <h4>Important</h4>
-                    </div>
-                    
-                    <div class="tanggal">
-                        <p>12 Desember 2024</p>
-                    </div>
-                </div>
+    <h1>Done</h1>
 
-                <div class="todo-text">
-                    <p>saya akan melakukan push up saya akan melakukan push up saya akan melakukan push up</p>
-                </div>
-
-                <div class="todo-nama-done-delete">
-
-                    <div class="nama">
-                        <h4>Abel Armando</h4>
-                        <p>Manager</p>
-                    </div>
-
-                    <div class="trash-check">
-                        <i class="fa-solid fa-check"></i>
-                        <i class="fa-solid fa-trash"></i>
-                    </div>                  
-                    
-                </div>
-
-            </div>
-
-        </div>
-
+    <div class="todo-complete">
+        
     </div>
 
     <script type="module" src="index.js"></script>
