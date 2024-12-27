@@ -95,7 +95,6 @@ function addtodo(){
 };
 
 let itemindex;
-// console.log(itemindex);
 
 // untuk update table
 function updatetabel(){
@@ -140,8 +139,9 @@ function createtodoitem(item, index) {
                         <h4>${item.level}</h4>
                     </div>
                     
-                    <div class="tanggal">
+                    <div class="tanggaltodo">
                         <p>${item.tanggal}</p>
+                        <p><span>${item.tenggatwaktu}</span></p>
                     </div>
                 </div>
 
@@ -202,12 +202,13 @@ function completedtodolist(item) {
     
 }
 
-
+// untuk save ke local storage 
 function savetodolist () {
     const todojson = JSON.stringify(todo)
     localStorage.setItem('todos', todojson);
 }
 
+// untuk buka savefile
 function opensavetodo() {
     const todos = localStorage.getItem('todos') || '[]';
     return JSON.parse(todos);

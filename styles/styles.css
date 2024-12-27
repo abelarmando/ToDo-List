@@ -54,17 +54,19 @@ h4{
 .box-card{
     width: 100%;
     display: grid;
-    gap: 20px;
+    gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .flex{
 display: flex;
 justify-content: center;
+width: 100%;
+
 }
 
 .container-card{
-    width: 40%;
+    width: 80%;
     height: 100%;
 }
 
@@ -78,6 +80,16 @@ justify-content: center;
     background-color: var(--primary-color);
     border-radius: 10px;
     padding: 10px;
+}
+
+.tanggaltodo{
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;  
+}
+
+.tanggaltodo span{
+    color: rgb(236, 233, 233);
 }
 
 .todo-level-tanggal{
@@ -236,4 +248,86 @@ form .garis{
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ }
+
+ @media (max-width: 600px) {
+    .button-todo{
+        width: fit-content;
+    }
+
+    .button-todo button{
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .form{
+        /* border: solid white; */
+        height: 550px;
+        width: 200px;
+    }
+
+    form{
+        height: 400px;
+    }
+
+    .close{
+        background: none;
+        border: none;
+        font-size: 2.5rem;
+        position: absolute;
+        top: 180px;
+        right: 5rem;
+        cursor: pointer;
+    }
+
+    .garis{
+        display: flex;
+        flex-direction: column;
+        /* border: solid; */
+        gap: 5px;
+    }
+
+    .garis p{
+        /* border: solid; */
+        width: 100%;
+    }
+
+    .garis input{
+        width: 100%;
+    }
+
+    .garis #todo-text{
+        width: 100%;
+    }
+
+    .todo-level{
+        width: 100%;
+    }
+
+    #todo-level-dropdown{
+        width: 100%;
+        display: flex;
+        justify-content: start;
+    }
+
+    .tanggal input {
+        padding: 5px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .container-card{
+        width: 100%;
+        height: 100%;
+    }
+    .flex{
+        height: 200px;
+    }
+    
+    .todo-card{
+        height: fit-content;
+        align-items: center;
+        gap: 20px;
+    }
  }
