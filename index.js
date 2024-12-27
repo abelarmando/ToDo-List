@@ -12,6 +12,8 @@ const textinput = document.getElementById('todo-text');
 const levelinput = document.getElementById('todo-level-dropdown');
 const boxcard = document.querySelector('.box-card');
 const todocomplete = document.querySelector('.todo-complete');
+const tenggatwaktu = document.querySelector('.tenggat-waktu');
+const todooverdue = document.querySelector('.todo-overdue');
 
 
 
@@ -50,9 +52,12 @@ formtodo.addEventListener('submit', function(e) {
 
 // tanggal sekarang
 const today = new Date();
+
+// ubah format tanggan ke english british
 const f = new Intl.DateTimeFormat('en-gb', {
     dateStyle: 'long',
 });
+
 
 // function untuk memasukan obj ke array
 
@@ -63,6 +68,8 @@ let number = 0;
 
 
 function addtodo(){
+    const deadline = new Date(tenggatwaktu.value);
+    
     const todoobj = {
         id: number,
         nama: namainput.value.trim(),
@@ -70,7 +77,9 @@ function addtodo(){
         text: textinput.value.trim(),
         level: levelinput.value,
         tanggal: f.format(today),
+        tenggatwaktu: f.format(deadline),
         aktif: false,
+        
     };
 
     todo.push(todoobj);
@@ -93,18 +102,27 @@ function updatetabel(){
     // untuk mereset innerhtml
     boxcard.innerHTML = '';
     todocomplete.innerHTML= '';
+    todooverdue.innerHTML= '';
+    
     todo.forEach((item, index) => {
+
+            const newday = new Date(item.tanggal).getTime();
+            const newdeadline = new Date(item.tenggatwaktu).getTime();
+
             const todoitem = createtodoitem(item, index);
             savetodolist();
-            if (item.aktif === false) {
+            
+            if (item.aktif === false && newdeadline >= newday) {
                 boxcard.append(todoitem);
+            } else  if(item.aktif === false && newdeadline < newday) {
+                
+                todooverdue.append(todoitem);
+                
             } else {
-                todocomplete.append(todoitem)
+                todocomplete.append(todoitem);
             }
             
     })
-    const flexcard = document.querySelectorAll('.flex');
-    // console.log(flexcard[]);
   
 };
 
@@ -160,7 +178,8 @@ function createtodoitem(item, index) {
     const btncheck = todotable.querySelector('.fa-check');
 
     btncheck.addEventListener('click', function() {
-        completedtodolist(item, index);
+        completedtodolist(item)
+        
     })
 
 
@@ -175,32 +194,12 @@ function deletetodolist(todoindex) {
     updatetabel();
 };
 
-function completedtodolist(item, todoindex) {
-    // untuk mengubah value objek aktif dari yg 0 menjadi 1 
+function completedtodolist(item) {
     item.aktif = true;
-    // untuk mencari array yg sudah selesai
-    const changetodo = todo.filter((n, b) => b == todoindex);
-    const converteobj = {
-        id: item.id,
-        nama: item.nama,
-        jabatan: item.jabatan,
-        text: item.text,
-        level: item.level,
-        tanggal: item.tanggal,
-        aktif: item.aktif,
-    }
-    // console.log(changeobj);
-
     
-
-    // untuk menghapus array objek yg sudah selesai
-    todo = todo.filter((n, b) => b !== todoindex);
-    
-    todo.push(converteobj);
-    console.log(todo);
-
     savetodolist();
     updatetabel();
+    
 }
 
 
