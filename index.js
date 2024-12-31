@@ -92,7 +92,9 @@ function addtodo(){
     jabataninput.value = '';
     textinput.value = '';
     number += 1;
-    tenggatwaktu.value = ''
+    tenggatwaktu.value = '';
+
+    
 };
 
 let itemindex;
@@ -110,6 +112,7 @@ function updatetabel(){
             const newdeadline = new Date(item.tenggatwaktu).getTime();
 
             const todoitem = createtodoitem(item, index);
+
             savetodolist();
             
             if (item.aktif === false && newdeadline >= newday) {
@@ -129,12 +132,13 @@ function updatetabel(){
 
 // function untuk membuat table
 function createtodoitem(item, index) {
+    const corettext = item.aktif === true ? 'coret' : '';
+
     const todotable = document.createElement('div');
     todotable.className = 'flex';
     todotable.innerHTML = `
     <div class="container-card">
         <div class="todo-card" id = '${index}'>
-
                 <div class="todo-level-tanggal">
                     <div class="level">
                         <h4>${item.level}</h4>
@@ -147,7 +151,7 @@ function createtodoitem(item, index) {
                 </div>
 
                 <div class="todo-text">
-                    <p>${item.text}</p>
+                  <p class="${corettext}"> ${item.text}</p>
                 </div>
 
                 <div class="todo-nama-done-delete">
@@ -158,7 +162,7 @@ function createtodoitem(item, index) {
                 </div>
 
                 <div class="trash-check">
-                    <i class="fa-solid fa-check"></i>
+                    <i class="fa-solid fa-check" for="todocek"></i>
                      <i class="fa-solid fa-trash delete-todo" id='${index}'></i>
                 </div>                  
                     
@@ -169,6 +173,7 @@ function createtodoitem(item, index) {
     `
     
     const btndelete = todotable.querySelector('.delete-todo');
+    
 
     btndelete.addEventListener('click', function() {        
 
@@ -179,7 +184,9 @@ function createtodoitem(item, index) {
     const btncheck = todotable.querySelector('.fa-check');
 
     btncheck.addEventListener('click', function() {
-        completedtodolist(item)
+        completedtodolist(item);
+
+        // line.classList.add('linethrough');
         
     })
 

@@ -252,6 +252,10 @@ form .garis{
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
  }
 
+ .coret{
+    text-decoration: line-through;
+ }
+
  @media (max-width: 600px) {
     body{
         padding: 0px;
